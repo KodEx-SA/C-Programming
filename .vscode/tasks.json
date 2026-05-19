@@ -1,0 +1,9 @@
+{
+  "version": "2.0.0",
+  "tasks": [{
+    "label": "Build Snake",
+    "type": "shell",
+    "command": "gcc -o snake snake.c -lncurses",
+    "group": { "kind": "build", "isDefault": true }
+  }]
+}
