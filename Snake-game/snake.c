@@ -8,10 +8,10 @@
  * Controls: W/A/S/D or Arrow Keys | Q to quit | P to pause
  */
 
-#include <ncurses.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
+#include <ncurses.h> // for terminal graphics
+#include <stdlib.h> // for rand() and srand()
+#include <time.h> // for time() and nanosleep()
+#include <string.h> // for memset() and memmove()
 
 /* ======================================== Game constants ======================================== */
 #define MAX_SNAKE_LEN 256
@@ -26,12 +26,12 @@
 #define BOARD_COLS 50
 
 /* ======================================== Data types ======================================== */
-typedef struct
+typedef struct // Represents a point on the board (y, x)
 {
     int y, x;
 } Point;
 
-typedef enum
+typedef enum // Possible movement directions for the snake
 {
     UP,
     DOWN,
@@ -39,14 +39,14 @@ typedef enum
     RIGHT
 } Direction;
 
-typedef struct
+typedef struct // Represents the snake in the game
 {
     Point body[MAX_SNAKE_LEN];
     int len;
     Direction dir;
 } Snake;
 
-typedef struct
+typedef struct // Represents the overall game state
 {
     Snake snake;
     Point food;
@@ -57,22 +57,22 @@ typedef struct
 } GameState;
 
 /* ======================================== Prototypes ======================================== */
-void init_ncurses(void);
+void init_ncurses(void); // Initializes ncurses and sets up the terminal
 void draw_border(void);
-void draw_status(const GameState *g);
+void draw_status(const GameState *g); // Draws the score, speed, and controls at the top of the screen
 void draw_snake(const Snake *s);
 void draw_food(Point food);
 void place_food(GameState *g);
 int check_collision(const GameState *g, Point next);
 Point next_head(const Snake *s);
-void handle_input(GameState *g, int ch);
+void handle_input(GameState *g, int ch); // Handles user input to change direction, pause, or quit
 void update(GameState *g);
 void game_loop(void);
 void show_start_screen(void);
 void show_game_over(int score);
 
 /* ======================================== ncurses init ======================================== */
-void init_ncurses(void)
+void init_ncurses(void) // Sets up ncurses mode, colors, and input settings
 {
     initscr();
     cbreak();
@@ -99,7 +99,7 @@ void draw_border(void)
 {
     attron(COLOR_PAIR(4) | A_BOLD);
     /* Top & bottom edges */
-    for (int c = BOARD_LEFT; c < BOARD_LEFT + BOARD_COLS + 1; c++)
+    for (int c = BOARD_LEFT; c < BOARD_LEFT + BOARD_COLS + 1; c++) // +1 to include the rightmost column
     {
         mvaddch(BOARD_TOP - 1, c, ACS_HLINE);
         mvaddch(BOARD_TOP + BOARD_ROWS, c, ACS_HLINE);
