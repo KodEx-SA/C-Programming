@@ -1,0 +1,9 @@
+Getting Started with C
+
+What is C?
+C => is a powerful general-purpose programming language known for its efficiency and flexibility.
+
+You can run C on your computer using the following two methods:
+- Run C online
+- Install C on your computer
+
