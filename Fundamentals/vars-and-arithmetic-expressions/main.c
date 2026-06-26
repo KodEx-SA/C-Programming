@@ -11,7 +11,7 @@ since 5 & 9 are integers, 5/9 would be truncated by 0 resulting in all temps rep
 
 int main()
 {
-    int fahr, celsius;
+    double fahr, celsius;
     int lower, upper, step;
 
     lower = 0;   // start at 0deg Fahr
@@ -24,7 +24,7 @@ int main()
         // printf("%d\t%d\n", fahr, celsius);
         
         celsius = (5.0 / 9.0) * (fahr - 32.0);
-        printf("%3.0f %6.1f\n", fahr, celsius);
+        printf("%3.0f\t%6.1f\n", fahr, celsius);
         
         fahr += step;
     }
