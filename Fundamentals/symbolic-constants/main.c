@@ -13,7 +13,8 @@
 
 int main()
 {
-    int fahr, celsius;
+    int fahr;
+    double celsius;
     printf("Fahrenheit to Celsius conversion table:\n");
 
     for (fahr = LOWER; fahr <= UPPER; fahr += STEP){
